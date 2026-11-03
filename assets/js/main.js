@@ -286,12 +286,14 @@
           prev.classList.remove('is-leaving');
           prev.getBoundingClientRect();
           prev.classList.remove('no-anim');
-        }, 700);
-        // outgoing photo keeps zooming while it fades, then rests
+        }, 450);
+        // only one photo may sit under the incoming one; clear any older outgoing photo at once
+        $$('.hb-layer.is-leaving', homeHero).forEach(l => l.classList.remove('is-leaving'));
+        // outgoing photo stays opaque underneath (and keeps zooming) until the new one has faded in
         layersFor(prevIdx).forEach(l => { l.classList.remove('is-on'); l.classList.add('is-leaving'); });
         setTimeout(() => {
           if (current !== prevIdx) layersFor(prevIdx).forEach(l => l.classList.remove('is-leaving'));
-        }, 1600);
+        }, 950);
       }
       current = next;
       const el = slideEls[current];

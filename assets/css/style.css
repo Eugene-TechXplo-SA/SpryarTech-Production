@@ -201,12 +201,17 @@ p { margin: 0; }
   position: fixed; inset: 0; z-index: 60; background: var(--ink); color: var(--text-light);
   padding: calc(env(safe-area-inset-top, 0px) + 24px) var(--gutter) 32px;
   display: flex; flex-direction: column; gap: 32px;
-  transform: translateY(-100%); transition: transform 0.6s var(--ease);
+  /* scroll inside the panel: on short screens the link list used to overflow the closed
+     (off-screen) panel and hang down over the header */
+  overflow-y: auto; overscroll-behavior: contain;
+  transform: translateY(-100%); visibility: hidden;
+  transition: transform 0.6s var(--ease), visibility 0s linear 0.6s;
 }
-.mobile-nav.open { transform: none; }
+.mobile-nav.open { transform: none; visibility: visible; transition: transform 0.6s var(--ease), visibility 0s; }
 .mobile-nav .mobile-top { display: flex; justify-content: space-between; align-items: center; }
 .mobile-nav nav { display: flex; flex-direction: column; }
-.mobile-nav nav a { font-family: var(--font-display); font-size: 36px; letter-spacing: -0.03em; padding: 10px 0; border-bottom: 1px solid var(--line-light); display: flex; justify-content: space-between; }
+.mobile-nav nav a { font-family: var(--font-display); font-size: clamp(20px, 5.4vw, 26px); letter-spacing: -0.02em; line-height: 1.2; padding: 14px 0; border-bottom: 1px solid var(--line-light); display: flex; justify-content: space-between; align-items: center; transition: color 0.25s; }
+.mobile-nav nav a:active { color: var(--signal); }
 .mobile-nav nav a span { font-family: var(--font-mono); font-size: 12px; color: var(--muted-light); }
 
 /* =========================================================
@@ -235,12 +240,14 @@ p { margin: 0; }
 .hb-layer {
   position: absolute; inset: 0; background: center / cover no-repeat;
   /* inactive slides are hidden outright so they hold no GPU memory */
-  opacity: 0; visibility: hidden; transition: opacity 1.4s var(--ease), visibility 0s linear 1.4s;
+  opacity: 0; visibility: hidden; transition: opacity 0.9s cubic-bezier(0.4, 0, 0.2, 1), visibility 0s linear 0.9s;
   /* zoom around the glass edge so the (static) blurred copies stay aligned with the sharp photo there */
   transform-origin: var(--glass-edge, 50%) 50%;
 }
-.hb-layer.is-on, .hb-layer.is-leaving, html:not(.js) .hb-layer[data-i="0"] { visibility: visible; transition: opacity 1.4s var(--ease), visibility 0s; }
-.hb-layer.is-on, html:not(.js) .hb-layer[data-i="0"] { opacity: 1; }
+.hb-layer.is-on, .hb-layer.is-leaving, html:not(.js) .hb-layer[data-i="0"] { visibility: visible; transition: opacity 0.9s cubic-bezier(0.4, 0, 0.2, 1), visibility 0s; }
+.hb-layer.is-on, html:not(.js) .hb-layer[data-i="0"] { opacity: 1; z-index: 2; }
+/* the outgoing photo stays fully opaque underneath while the new one fades in over it */
+.hb-layer.is-leaving { opacity: 1; z-index: 1; }
 /* Ken Burns runs on the sharp photo only. The blurred copies inside the glass stay still:
    re-blurring 13 moving layers every frame is what overloaded phones. */
 .hero.kb-run .hero-bg:not(.flute-img) .hb-layer.is-on,
@@ -357,13 +364,16 @@ p { margin: 0; }
 .hero-sub { max-width: 500px; margin-top: 22px; color: rgba(241,240,234,0.72); font-size: 17px; }
 
 /* slide states (only when JS runs; without JS the first slide simply shows) */
-.js .hero-slide .line > span { transform: translateY(110%); transition: transform 0.9s var(--ease-out); }
-.js .hero-slide .eyebrow, .js .hero-slide .hero-sub { opacity: 0; transform: translateY(12px); transition: opacity 0.5s, transform 0.7s var(--ease-out); }
-.js .hero-slide.is-active .line > span { transform: none; transition-delay: 0.12s; }
-.js .hero-slide.is-active .line:nth-child(2) > span { transition-delay: 0.2s; }
-.js .hero-slide.is-active .eyebrow { opacity: 1; transform: none; transition-delay: 0.05s; }
-.js .hero-slide.is-active .hero-sub { opacity: 1; transform: none; transition-delay: 0.32s; }
-.js .hero-slide.is-leaving .line > span { transform: translateY(-110%); transition: transform 0.6s var(--ease); }
+/* Slide change is choreographed so two slides' text never share the screen:
+   the outgoing text clears in ~0.35s, then the incoming text starts. */
+.js .hero-slide .line > span { transform: translateY(110%); opacity: 0; transition: transform 0.9s var(--ease-out), opacity 0.5s ease-out; }
+.js .hero-slide .eyebrow, .js .hero-slide .hero-sub { opacity: 0; transform: translateY(12px); transition: opacity 0.5s ease-out, transform 0.7s var(--ease-out); }
+.js .hero-slide.is-active .line > span { transform: none; opacity: 1; transition-delay: 0.38s; }
+.js .hero-slide.is-active .line:nth-child(2) > span { transition-delay: 0.47s; }
+.js .hero-slide.is-active .eyebrow { opacity: 1; transform: none; transition-delay: 0.32s; }
+.js .hero-slide.is-active .hero-sub { opacity: 1; transform: none; transition-delay: 0.58s; }
+.js .hero-slide.is-leaving .line > span { transform: translateY(-30%); opacity: 0; transition: transform 0.35s var(--ease), opacity 0.25s ease-in; }
+.js .hero-slide.is-leaving .eyebrow, .js .hero-slide.is-leaving .hero-sub { transform: translateY(-6px); transition: opacity 0.2s ease-in, transform 0.35s var(--ease); }
 .js .hero-slide.no-anim *, .js .hero-slide.no-anim .line > span { transition: none !important; }
 html:not(.js) .hero-slide + .hero-slide { display: none; }
 .page-title { margin-top: 18px; }
@@ -759,7 +769,7 @@ section { position: relative; }
   .clients { grid-template-columns: 1fr; gap: 24px; }
 }
 @media (max-width: 720px) {
-  .topbar .hide-sm { display: none; }
+  .topbar { display: none; }
   /* phones: same as desktop, reeds cover the left half and the right half stays sharp */
   .flutes { --glass-w: 46% !important; }
   .hero { --glass-edge: 46%; }
