@@ -1,0 +1,12 @@
+# dependencies & build output
+node_modules/
+dist/
+
+# full-size stock originals (web-sized copies live in public/images)
+source-assets/stock/
+
+# OS / editor
+.DS_Store
+*.log
+.vscode/
+.idea/

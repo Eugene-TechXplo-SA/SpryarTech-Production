@@ -1,0 +1,27 @@
+<!-- ================= Page hero ================= -->
+<section class="hero page-hero dark" data-hero>
+  <!-- Photo set per page via the "image" include var; the glass reeds copy it automatically. -->
+  <div class="hero-bg has-photo" data-hero-bg aria-hidden="true">
+    <div class="hb-layer is-on" style="background-image:url('{{image}}');background-position:{{pos}}{{mstyle}}"></div>
+  </div>
+  <div class="flutes" data-reeds="11" aria-hidden="true"><span class="edge"></span></div>
+
+  <div class="wrap hero-inner">
+    <nav class="crumbs mono" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span><span aria-current="page">{{crumb}}</span></nav>
+    <div class="hero-copy">
+      <span class="eyebrow">{{eyebrow}}</span>
+      <h1 class="hero-title page-title"><span class="line"><span>{{title}}</span></span> <span class="line"><span class="muted">{{title2}}</span></span></h1>
+      <p class="hero-sub">{{sub}}</p>
+    </div>
+  </div>
+</section>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.spryartech.co.za/" },
+    { "@type": "ListItem", "position": 2, "name": "{{crumb}}", "item": "https://www.spryartech.co.za/{{path}}" }
+  ]
+}
+</script>

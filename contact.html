@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en-ZA">
+<head>
+<!-- @include partials/head.html {"title": "Contact Spryar Tech | Sandton City Towers, Johannesburg", "description": "Contact Spryar Tech at 11th Floor, Sandton City Towers, Sandton. Call 087 265 6818 or email info@spryartech.co.za to discuss your infrastructure project.", "path": "contact.html", "robots": "index, follow"} -->
+</head>
+<body data-page="contact">
+
+<!-- @include partials/header.html -->
+
+<main>
+
+<!-- @include partials/page-hero.html {"crumb": "Contact", "eyebrow": "Get in touch", "title": "Let’s talk about", "title2": "your infrastructure.", "sub": "Tell us what you’re building, maintaining or trying to understand.", "image": "/images/cta-skyline.jpg", "pos": "50% 30%", "path": "contact.html"} -->
+
+<!-- @include partials/contact.html -->
+
+<!-- ================= Office ================= -->
+<section class="section" id="offices">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">Visit us</span>
+        <h2>Our<br><span class="muted">office.</span></h2>
+      </div>
+      <p class="lede muted">Meetings by appointment. Call or email ahead and we’ll make sure the right people are in the room.</p>
+    </div>
+
+    <div class="offices" style="grid-template-columns:1fr 1.6fr">
+      <article class="office reveal" data-draw-trigger>
+        <svg class="icon-draw" data-draw viewBox="0 0 64 64" style="width:48px" aria-hidden="true"><path d="M32 60S12 38 12 24a20 20 0 0 1 40 0c0 14-20 36-20 36z"/><circle class="accent" cx="32" cy="24" r="7"/></svg>
+        <span class="mono">Head office</span>
+        <h3>Sandton City Towers</h3>
+        <p>11th Floor, Sandton City Towers<br>Cnr 5th St &amp; Rivonia Road<br>Sandton, South Africa</p>
+        <p><a href="tel:+27872656818">087 265 6818</a><br><a href="mailto:info@spryartech.co.za">info@spryartech.co.za</a></p>
+        <a class="text-link" href="https://maps.google.com/?q=Sandton+City+Towers,+Rivonia+Road,+Sandton" target="_blank" rel="noopener">Get directions <svg viewBox="0 0 16 16"><path d="M2 8h12M9 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a>
+      </article>
+      <!-- Building photo with a Map switch. The map iframe only loads when "Map" is chosen.
+           Head office photo: Sandton City Towers. -->
+      <div class="office-media reveal" data-media-toggle>
+        <div class="media-view media-photo ph photo" data-view="photo" style="background-image:url('/images/sandton-city-towers-1.webp');background-position:50% 30%" role="img" aria-label="Sandton City Towers, head office of Spryar Tech"></div>
+        <div class="media-view media-map" data-view="map" hidden>
+          <iframe data-src="https://www.google.com/maps/embed?origin=mfe&amp;pb=!1m3!2m1!1sSandton+City+Towers,+Sandton!6i16" title="Map showing Sandton City Towers" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+        </div>
+        <div class="media-switch" role="group" aria-label="Show building or map">
+          <button type="button" class="active" data-show="photo" aria-pressed="true">Building</button>
+          <button type="button" data-show="map" aria-pressed="false">Map</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- @include partials/footer.html -->
+</body>
+</html>

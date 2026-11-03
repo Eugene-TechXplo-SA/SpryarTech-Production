@@ -1,0 +1,64 @@
+<!-- ================= Contact ================= -->
+<section class="section dark contact" id="contact">
+  <span class="plus deco d1" aria-hidden="true"></span>
+  <span class="plus deco d2" aria-hidden="true"></span>
+  <span class="plus deco d3" aria-hidden="true"></span>
+  <svg class="map-art" viewBox="0 0 400 300" aria-hidden="true" id="dotMap"></svg>
+
+  <div class="wrap contact-grid">
+    <div class="steps" aria-hidden="true">
+      <span>00</span><span>01</span><span>02</span><span>03</span><span>04</span><span>05</span><span>06</span><span class="on">07 Contact</span>
+    </div>
+
+    <div>
+      <h2>Contact us</h2>
+      <p class="sub">Tell us what you're building, maintaining or trying to understand. We'll map it to the engineering, data and GIS work it actually needs.</p>
+      <!-- Submits by opening the visitor's email client to info@spryartech.co.za (see main.js). Swap for a form backend when ready. -->
+      <form class="form" id="contactForm" data-mailto="info@spryartech.co.za" novalidate>
+        <div class="field"><input id="f-name" name="name" placeholder=" " required><label for="f-name">Full name</label><span class="bar"></span></div>
+        <div class="field"><input id="f-org" name="org" placeholder=" "><label for="f-org">Company</label><span class="bar"></span></div>
+        <div class="field"><input id="f-email" name="email" type="email" placeholder=" " required><label for="f-email">Email</label><span class="bar"></span></div>
+        <div class="field"><input id="f-phone" name="phone" type="tel" placeholder=" "><label for="f-phone">Phone</label><span class="bar"></span></div>
+        <div class="field full">
+          <select id="f-service" name="service">
+            <option value=""></option>
+            <option>General enquiry</option>
+            <option>Infrastructure Engineering</option>
+            <option>Physical Asset Management</option>
+            <option>Data Engineering</option>
+            <option>GIS &amp; Spatial Analytics</option>
+          </select>
+          <label for="f-service">Service of interest</label><span class="bar"></span>
+        </div>
+        <div class="field full"><textarea id="f-msg" name="message" placeholder=" " required></textarea><label for="f-msg">What are you building or maintaining?</label><span class="bar"></span></div>
+        <div class="actions">
+          <button class="btn" type="submit">
+            <span class="btn-arrow"><svg viewBox="0 0 16 16"><path d="M2 8h12M9 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg><svg viewBox="0 0 16 16"><path d="M2 8h12M9 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span>
+            <span class="btn-label">Send enquiry</span>
+          </button>
+          <span class="note">Submitting opens your email client with the message ready to send. See our <a href="privacy.html" style="text-decoration:underline">privacy statement</a>.</span>
+        </div>
+      </form>
+    </div>
+
+    <aside class="contact-info" data-draw-trigger>
+      <svg class="icon-draw" data-draw viewBox="0 0 64 64" aria-hidden="true">
+        <!-- target -->
+        <circle cx="32" cy="32" r="27"/><circle cx="32" cy="32" r="17"/><circle cx="32" cy="32" r="7"/>
+        <path d="M32 0v14M32 50v14M0 32h14M50 32h14"/>
+      </svg>
+      <div class="info-block">
+        <h4>Head office</h4>
+        <p>11th Floor, Sandton City Towers<br>Cnr 5th St &amp; Rivonia Road<br>Sandton, South Africa</p>
+      </div>
+      <div class="info-block">
+        <h4>Talk to us</h4>
+        <p><a href="tel:+27872656818">087 265 6818</a><br><a href="mailto:info@spryartech.co.za">info@spryartech.co.za</a></p>
+      </div>
+      <div class="info-block">
+        <h4>Disciplines</h4>
+        <p>Infrastructure Engineering<br>Physical Asset Management<br>Data Engineering<br>GIS &amp; Spatial Analytics</p>
+      </div>
+    </aside>
+  </div>
+</section>
